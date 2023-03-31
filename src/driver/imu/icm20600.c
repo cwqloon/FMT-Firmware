@@ -265,7 +265,7 @@ static rt_err_t imu_init(void)
     RT_TRY(rt_device_open(imu_spi_dev, RT_DEVICE_OFLAG_RDWR));
 
     RT_TRY(spi_read_reg8(imu_spi_dev, WHO_AM_I, &chip_id));
-    if (chip_id != 0x11) {
+    if (chip_id != 0x11 && chip_id != 0xAF) {
         DRV_DBG("ICM20600 unmatched chip id:0x%x\n", chip_id);
         return FMT_ERROR;
     }
